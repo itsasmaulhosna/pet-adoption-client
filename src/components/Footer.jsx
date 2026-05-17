@@ -4,9 +4,13 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaPhone } from "react-
 
 const Footer = () => {
   return (
-    <footer className="relative bg-[#06142E] text-gray-300 pt-16 pb-8 overflow-hidden">
+    <footer className="
+      relative overflow-hidden pt-16 pb-8
+      bg-white dark:bg-[#06142E]
+      text-gray-700 dark:text-gray-300
+      border-t border-gray-200 dark:border-white/10">
 
-      
+      {/* BACKGROUND EFFECTS */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-pink-500/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/10 blur-3xl rounded-full"></div>
 
@@ -14,13 +18,13 @@ const Footer = () => {
 
         <div className="grid md:grid-cols-3 gap-10">
 
-          {/* BRAND / ABOUT */}
+          {/* BRAND */}
           <div>
-            <h2 className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
               PetNest 🐾
             </h2>
 
-            <p className="mt-4 text-sm leading-relaxed text-gray-400">
+            <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               Connecting loving families with adorable pets.
               Adopt, don’t shop — give a pet a forever home.
             </p>
@@ -28,46 +32,46 @@ const Footer = () => {
 
           {/* CONTACT */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Contact Information
             </h3>
 
             <div className="space-y-3 text-sm">
 
               <p className="flex items-center gap-2">
-                <FaPhone className="text-pink-400" />
+                <FaPhone className="text-pink-500" />
                 +880 15518455465
               </p>
 
               <p className="flex items-center gap-2">
-                <FaEnvelope className="text-pink-400" />
+                <FaEnvelope className="text-pink-500" />
                 support@petnest.com
               </p>
 
-              <p>
+              <p className="text-gray-600 dark:text-gray-400">
                 Dhaka, Bangladesh
               </p>
 
             </div>
           </div>
 
-          {/* SOCIAL LINKS */}
+          {/* SOCIAL */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Follow Us
             </h3>
 
             <div className="flex gap-4">
 
-              <a href="#" className="p-3 bg-white/10 rounded-full hover:bg-pink-500 transition">
+              <a href="#" className="p-3 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-pink-500 transition">
                 <FaFacebookF />
               </a>
 
-              <a href="#" className="p-3 bg-white/10 rounded-full hover:bg-pink-500 transition">
+              <a href="#" className="p-3 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-pink-500 transition">
                 <FaInstagram />
               </a>
 
-              <a href="#" className="p-3 bg-white/10 rounded-full hover:bg-pink-500 transition">
+              <a href="#" className="p-3 rounded-full bg-gray-100 dark:bg-white/10 hover:bg-pink-500 transition">
                 <FaTwitter />
               </a>
 
@@ -77,7 +81,7 @@ const Footer = () => {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="mt-12 border-t border-white/10 pt-6 text-center text-sm text-gray-500">
+        <div className="mt-12 border-t border-gray-200 dark:border-white/10 pt-6 text-center text-sm text-gray-500 dark:text-gray-400">
           © {new Date().getFullYear()} PetNest. All rights reserved.
         </div>
 
