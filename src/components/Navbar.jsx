@@ -77,7 +77,7 @@ export default function Navbar() {
 
             <li>
               <Link
-                href="/pets"
+                href="/pet"
                 className="flex items-center gap-2 hover:text-pink-500 transition-all duration-300"
               >
                 <FaPaw />
@@ -196,7 +196,7 @@ bg-gradient-to-r from-blue-400 via-pink-500 to-red-400
             </Link>
 
             <Link
-              href="/pets"
+              href="/pet"
               className="flex items-center gap-3 hover:text-pink-500 transition-all duration-300"
             >
               <FaPaw />
