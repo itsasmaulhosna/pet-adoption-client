@@ -2,7 +2,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import {
@@ -15,7 +15,7 @@ import {
 } from "@heroui/react";
 
 export default function AddPetPage() {
-  const router = useRouter();
+   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e) => {

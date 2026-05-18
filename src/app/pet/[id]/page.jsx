@@ -12,6 +12,7 @@ import {
   FaSyringe,
   FaEdit,
 } from "react-icons/fa";
+import { EditModal } from "@/components/EditModal";
 
 export default async function PetDetailsPage({ params }) {
   const { id } =await params;
@@ -110,19 +111,7 @@ export default async function PetDetailsPage({ params }) {
             </p>
 
             {/* EDIT BUTTON */}
-            <button
-              className="
-                flex items-center gap-2
-                px-5 py-2 rounded-full
-                bg-gradient-to-r from-cyan-500 to-blue-600
-                text-white font-semibold
-                hover:scale-105 transition
-                shadow-lg
-              "
-            >
-              <FaEdit />
-              Edit Pet Info
-            </button>
+            <EditModal pet={pet}/>
 
           </div>
 
