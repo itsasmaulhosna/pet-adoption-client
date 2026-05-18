@@ -188,7 +188,7 @@ const PetCard = ({ pet }) => {
 
           {/* VIEW DETAILS */}
           <Link
-            href={`/allPets/${_id}`}
+            href={`/pet/${_id}`}
             className="
             flex-1 flex items-center justify-center gap-2
 
