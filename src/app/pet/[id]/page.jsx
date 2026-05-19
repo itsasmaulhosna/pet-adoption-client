@@ -111,7 +111,20 @@ export default async function PetDetailsPage({ params }) {
             </p>
 
             {/* EDIT BUTTON */}
-            <EditModal pet={pet}/>
+            <EditModal
+  pet={pet}
+  trigger={
+    <button className="
+      px-4 py-2 rounded-xl
+      flex items-center gap-2
+      bg-gray-100 dark:bg-white/5
+      hover:bg-gray-200 dark:hover:bg-white/10
+    ">
+      <FaEdit />
+      Edit
+    </button>
+  }
+/>
 
           </div>
 

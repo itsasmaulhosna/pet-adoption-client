@@ -54,20 +54,18 @@ const { _id,petName,imageUrl,species,gender,breed,age,location,fee,healthStatus,
     <Modal>
       
             <Modal.Trigger>
-    <button
-      className="
-        flex items-center gap-2
-        px-5 py-2 rounded-full
-        bg-gradient-to-r from-cyan-500 to-blue-600
-        text-white font-semibold
-        hover:scale-105 transition
-        shadow-lg
-      "
-    >
+    <button className="
+      flex items-center justify-center gap-2
+      bg-gray-100 dark:bg-white/5
+      rounded-xl h-11 text-sm
+      flex-1
+      w-full
+    ">
       <FaEdit />
-      Edit Pet Info
+      Edit
     </button>
   </Modal.Trigger>
+
 
       <Modal.Backdrop>
         <Modal.Container placement="auto">

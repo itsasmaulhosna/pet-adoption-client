@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   FaHeart,
   FaPaw,
@@ -30,32 +30,21 @@ export default function AdoptionRequestForm({ pet }) {
     try {
       setLoading(true);
 
-      // 👉 এখানে তুমি backend API call করবে
-      const payload = {
-        ...data,
-        userId: user?.id,
-        userName: user?.name,
-        userEmail: user?.email,
-        petId: pet._id,
-        petName: pet.petName,
-      };
-
-      console.log("Adoption Request:", payload);
-
-      // TODO: API call → save DB + dashboard
-      // await fetch("/api/adoption-request", { method: "POST", body: JSON.stringify(payload) })
+      console.log(data);
 
       toast.success("Adoption request sent!");
       setSubmitted(true);
       e.target.reset();
+
     } catch (err) {
       toast.error(err.message || "Failed to submit");
+
     } finally {
       setLoading(false);
     }
   };
 
-  // ✅ AUTO FILL USER DATA (read-only)
+  // SUCCESS UI
   if (submitted) {
     return (
       <div className="rounded-2xl border p-10 text-center bg-white dark:bg-[#0d1528] shadow-xl">
@@ -102,7 +91,7 @@ export default function AdoptionRequestForm({ pet }) {
           </div>
         </div>
 
-        {/* USER NAME (LOCKED) */}
+        {/* USER NAME */}
         <div>
           <label className="text-sm mb-2 block">Your Name</label>
           <div className="relative">
@@ -115,7 +104,7 @@ export default function AdoptionRequestForm({ pet }) {
           </div>
         </div>
 
-        {/* EMAIL (LOCKED) */}
+        {/* EMAIL */}
         <div>
           <label className="text-sm mb-2 block">Your Email</label>
           <div className="relative">
@@ -152,16 +141,23 @@ export default function AdoptionRequestForm({ pet }) {
           />
         </div>
 
-        {/* BUTTON */}
+        {/* BUTTON WITH SPINNER */}
         <button
           disabled={loading}
           className="
             w-full py-3.5 rounded-xl font-semibold text-white
             bg-gradient-to-r from-rose-500 via-pink-500 to-cyan-500
-            disabled:opacity-60
+            disabled:opacity-60 flex items-center justify-center gap-2
           "
         >
-          {loading ? "Submitting..." : `Adopt ${pet.petName}`}
+          {loading ? (
+            <>
+              <span className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              Submitting...
+            </>
+          ) : (
+            `Adopt ${pet.petName}`
+          )}
         </button>
 
       </form>
