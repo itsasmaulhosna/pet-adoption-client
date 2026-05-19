@@ -1,20 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaHeart,
   FaPaw,
   FaUser,
   FaEnvelope,
   FaCalendarAlt,
+  FaCheckCircle,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 const inputClass =
-  "w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0a1020] px-4 py-3 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30 transition";
+  "w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#0a1020] px-4 py-3 text-gray-900 dark:text-white placeholder:text-gray-400 outline-none";
 
 export default function AdoptionRequestForm({ pet }) {
   const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -24,9 +30,23 @@ export default function AdoptionRequestForm({ pet }) {
     try {
       setLoading(true);
 
-      console.log(data);
+      // 👉 এখানে তুমি backend API call করবে
+      const payload = {
+        ...data,
+        userId: user?.id,
+        userName: user?.name,
+        userEmail: user?.email,
+        petId: pet._id,
+        petName: pet.petName,
+      };
+
+      console.log("Adoption Request:", payload);
+
+      // TODO: API call → save DB + dashboard
+      // await fetch("/api/adoption-request", { method: "POST", body: JSON.stringify(payload) })
 
       toast.success("Adoption request sent!");
+      setSubmitted(true);
       e.target.reset();
     } catch (err) {
       toast.error(err.message || "Failed to submit");
@@ -35,16 +55,26 @@ export default function AdoptionRequestForm({ pet }) {
     }
   };
 
+  // ✅ AUTO FILL USER DATA (read-only)
+  if (submitted) {
+    return (
+      <div className="rounded-2xl border p-10 text-center bg-white dark:bg-[#0d1528] shadow-xl">
+        <FaCheckCircle className="text-green-500 text-5xl mx-auto mb-4" />
+
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+          Request Sent Successfully!
+        </h2>
+
+        <p className="text-gray-500 mt-2">
+          Your adoption request for <b>{pet.petName}</b> is now under review.
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div
-      className="
-      rounded-2xl border
-      border-gray-200 dark:border-white/10
-      bg-white dark:bg-[#0d1528]/90
-      p-6 lg:p-8 shadow-xl
-      transition
-      "
-    >
+    <div className="rounded-2xl border p-6 lg:p-8 shadow-xl bg-white dark:bg-[#0d1528]/90">
+
       {/* HEADER */}
       <div className="flex items-center gap-2 mb-1">
         <FaHeart className="text-rose-500" />
@@ -53,22 +83,18 @@ export default function AdoptionRequestForm({ pet }) {
         </h2>
       </div>
 
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+      <p className="text-sm text-gray-500 mb-6">
         Fill out this form and the owner will review your request.
       </p>
 
-      {/* FORM */}
       <form onSubmit={onSubmit} className="space-y-4">
 
         {/* PET NAME */}
         <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300 mb-2 block">
-            Pet Name
-          </label>
+          <label className="text-sm mb-2 block">Pet Name</label>
           <div className="relative">
             <FaPaw className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
-              name="petName"
               defaultValue={pet.petName}
               readOnly
               className={`${inputClass} pl-11 opacity-80 cursor-not-allowed`}
@@ -76,44 +102,35 @@ export default function AdoptionRequestForm({ pet }) {
           </div>
         </div>
 
-        {/* NAME */}
+        {/* USER NAME (LOCKED) */}
         <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300 mb-2 block">
-            Your Name
-          </label>
+          <label className="text-sm mb-2 block">Your Name</label>
           <div className="relative">
             <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
-              name="applicantName"
-              placeholder="Your full name"
-              required
-              className={`${inputClass} pl-11`}
+              value={user?.name || ""}
+              readOnly
+              className={`${inputClass} pl-11 opacity-80 cursor-not-allowed`}
             />
           </div>
         </div>
 
-        {/* EMAIL */}
+        {/* EMAIL (LOCKED) */}
         <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300 mb-2 block">
-            Your Email
-          </label>
+          <label className="text-sm mb-2 block">Your Email</label>
           <div className="relative">
             <FaEnvelope className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
-              name="applicantEmail"
-              type="email"
-              placeholder="you@email.com"
-              required
-              className={`${inputClass} pl-11`}
+              value={user?.email || ""}
+              readOnly
+              className={`${inputClass} pl-11 opacity-80 cursor-not-allowed`}
             />
           </div>
         </div>
 
         {/* DATE */}
         <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300 mb-2 block">
-            Preferred Pickup Date
-          </label>
+          <label className="text-sm mb-2 block">Preferred Pickup Date</label>
           <div className="relative">
             <FaCalendarAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
@@ -127,9 +144,6 @@ export default function AdoptionRequestForm({ pet }) {
 
         {/* MESSAGE */}
         <div>
-          <label className="text-sm text-gray-700 dark:text-gray-300 mb-2 block">
-            Message to Owner
-          </label>
           <textarea
             name="message"
             rows={4}
@@ -140,16 +154,14 @@ export default function AdoptionRequestForm({ pet }) {
 
         {/* BUTTON */}
         <button
-          type="submit"
           disabled={loading}
           className="
             w-full py-3.5 rounded-xl font-semibold text-white
             bg-gradient-to-r from-rose-500 via-pink-500 to-cyan-500
-            hover:opacity-90 transition
             disabled:opacity-60
           "
         >
-          {loading ? "Submitting..." : "Submit Request"}
+          {loading ? "Submitting..." : `Adopt ${pet.petName}`}
         </button>
 
       </form>
