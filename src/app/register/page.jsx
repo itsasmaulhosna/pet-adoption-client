@@ -1,10 +1,14 @@
-
 'use client'
 
+import { authClient } from '@/lib/auth-client';
+import { Button } from '@heroui/react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa';
+import toast from 'react-hot-toast';
+import { FaEye, FaEyeSlash, FaUser, FaGoogle } from 'react-icons/fa';
+import { FcGoogle } from 'react-icons/fc';
 
 const RegisterPage = () => {
 
@@ -16,6 +20,40 @@ const RegisterPage = () => {
     watch,
     formState: { errors }
   } = useForm();
+
+    const handleGoogleSignIn =async()=>{
+        await authClient.signIn.social({
+            provider:'google'
+        })
+      }
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const user = Object.fromEntries(formData.entries());
+
+    const { data, error } = await authClient.signUp.email({
+      email: user.email,
+      password: user.password,
+      name: user.name,
+      image: user.photo,
+      confirmPassword: user.confirmPassword
+    });
+
+
+
+    console.log({ data, error });
+
+    if (data) {
+      toast.success("Registration Successful 🐾");
+      redirect('/');
+    }
+
+    if (error) {
+      toast.error(error.message || "Registration Failed");
+    }
+  };
 
   const password = watch("password");
 
@@ -55,7 +93,38 @@ const RegisterPage = () => {
           Join PetNest 🐾
         </p>
 
-        <form className="space-y-5">
+        {/* GOOGLE BUTTON */}
+        <button 
+  type="button"
+  onClick={handleGoogleSignIn}
+  className="
+  flex items-center justify-center gap-3
+  w-full py-3 rounded-xl
+  border border-gray-200 dark:border-white/10
+  bg-white dark:bg-white/5
+  hover:bg-gray-100 dark:hover:bg-white/10
+  transition-all duration-300
+  font-semibold
+  text-blue-500
+  "
+>
+  <FaGoogle />
+  Continue with Google
+</button>
+
+        {/* DIVIDER */}
+        <div className="flex items-center gap-3 my-6">
+
+          <div className="flex-1 h-[1px] bg-gray-300 dark:bg-white/10"></div>
+
+          <p className="text-sm text-gray-400">OR</p>
+
+          <div className="flex-1 h-[1px] bg-gray-300 dark:bg-white/10"></div>
+
+        </div>
+
+        {/* FORM */}
+        <form onSubmit={onSubmit} className="space-y-5">
 
           {/* NAME */}
           <div>
@@ -215,4 +284,3 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
-

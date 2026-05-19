@@ -20,10 +20,15 @@ import {
 } from "react-icons/fa";
 
 import { LuLogIn } from "react-icons/lu";
+import { authClient } from "@/lib/auth-client";
 
 
 
 export default function Navbar() {
+  
+  const {data:session,error}=authClient.useSession()
+  const user =session?.user;
+  console.log(user)
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mounted, setMounted] = useState(false);

@@ -1,9 +1,12 @@
 
 'use client'
 
+import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import {
   FaEye,
   FaEyeSlash,
@@ -17,9 +20,41 @@ const Loginpage = () => {
 
   const {
     register,
-    handleSubmit,
+    
     formState: { errors }
   } = useForm();
+const handleGoogleSignIn =async()=>{
+      await authClient.signIn.social({
+          provider:'google'
+      })
+    }
+  const onSubmit = async (e) => {
+      e.preventDefault();
+  
+      const formData = new FormData(e.currentTarget);
+      const user = Object.fromEntries(formData.entries());
+      
+  
+       const { data, error } = await authClient.signIn.email({
+         email: user.email,
+         password: user.password,
+         
+  
+  
+       });
+       console.log({data,error})
+  
+       if (data) {
+        toast.success("Login Successful 🐾");
+         redirect('/');
+       }
+  
+       if (error) {
+        toast.error(error.message || "Login Failed");
+         
+       }
+    };
+
 
   return (
 
@@ -93,7 +128,7 @@ const Loginpage = () => {
         </p>
 
         {/* GOOGLE BUTTON */}
-        <button
+        <button onClick={handleGoogleSignIn}
           className="
           flex items-center justify-center gap-3
           w-full py-3 rounded-xl
@@ -123,7 +158,7 @@ const Loginpage = () => {
         </div>
 
         {/* FORM */}
-        <form className='space-y-5'>
+        <form onSubmit={onSubmit} className='space-y-5' >
 
           {/* EMAIL */}
           <fieldset>
@@ -207,7 +242,7 @@ const Loginpage = () => {
               </p>
             )}
 
-            {/* PASSWORD RULES */}
+            {/* PASSWORD RULES
             <div
               className="
               mt-4 space-y-1 text-sm
@@ -221,7 +256,7 @@ const Loginpage = () => {
 
               <p>• One lowercase letter</p>
 
-            </div>
+            </div> */}
 
           </fieldset>
 
