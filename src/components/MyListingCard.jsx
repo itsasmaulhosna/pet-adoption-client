@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import {
-  FaEye,
-  FaTrash,
-  FaEnvelopeOpenText,
-  FaEdit,
-} from "react-icons/fa";
+import Link from "next/link";
+
+import { FaEye } from "react-icons/fa";
 
 import { EditModal } from "@/components/EditModal";
-import Link from "next/link";
-import { DeleteModal } from "./DeleteModal";
+import {DeleteModal }from "@/components/DeleteModal";
+import AdoptionRequestModal from "@/components/AdoptionRequestModal";
 
-export default function MyListingCard({ pet, onDelete }) {
+export default function MyListingCard({ pet }) {
   return (
     <div className="
       group rounded-3xl overflow-hidden
@@ -43,39 +40,48 @@ export default function MyListingCard({ pet, onDelete }) {
       {/* CONTENT */}
       <div className="p-5">
 
+        {/* TITLE */}
         <div className="flex justify-between mb-2">
           <h2 className="font-bold text-lg group-hover:text-pink-500">
             {pet.petName}
           </h2>
 
           <span className="text-cyan-500 font-bold">
-            ৳ {pet.fee}
+            $ {pet.fee}
           </span>
         </div>
 
-        {/* BUTTONS */}
-        <div className="grid grid-cols-2 gap-2 mt-4">
+        {/* BUTTON GRID (STRICT EQUAL SIZE) */}
+        <div className="
+          grid grid-cols-2
+          gap-3
+          mt-4
+          items-stretch
+        ">
 
-          {/* REQUEST BUTTON ONLY */}
-          <button className="
-            flex items-center justify-center gap-2
-            bg-gray-100 dark:bg-white/5
-            rounded-xl py-2 text-sm
-          ">
-            <FaEnvelopeOpenText />
-            Request
-          </button>
+          {/* REQUEST (ADOPTION FORM) */}
+          
+<div className="w-full">
+  <AdoptionRequestModal pet={pet} />
+</div>
 
-          {/* EDIT (REAL COMPONENT) */}
-          <EditModal pet={pet} />
+
+
+          {/* EDIT */}
+          <div className="w-full">
+            <EditModal pet={pet} />
+          </div>
 
           {/* VIEW */}
           <Link
             href={`/pet/${pet._id}`}
             className="
               flex items-center justify-center gap-2
+              w-full h-full
               bg-gray-100 dark:bg-white/5
               rounded-xl py-2 text-sm
+              hover:bg-gray-200 dark:hover:bg-white/10
+              transition
             "
           >
             <FaEye />
@@ -83,10 +89,12 @@ export default function MyListingCard({ pet, onDelete }) {
           </Link>
 
           {/* DELETE */}
-
-          <DeleteModal pet={pet}/>
+          <div className="w-full">
+            <DeleteModal pet={pet} />
+          </div>
 
         </div>
+
       </div>
     </div>
   );

@@ -24,13 +24,17 @@ export function DeleteModal({ pet }) {
 
   return (
     <AlertDialog>
-      {/* ✅ SAME STYLE AS OTHER BUTTONS */}
+      
       <Button
         className="
-              flex items-center justify-center gap-2
-              bg-gray-100 dark:bg-white/5
-              rounded-xl py-2 text-sm
-            "
+      flex items-center justify-center gap-2
+       h-11
+      bg-gray-100 dark:bg-white/5
+      px-14 rounded-xl
+      text-sm font-medium
+      hover:bg-gray-200 dark:hover:bg-white/10
+      transition
+    "
       >
         <TrashBin />
         Delete

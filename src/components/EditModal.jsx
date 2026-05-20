@@ -53,18 +53,25 @@ const { _id,petName,imageUrl,species,gender,breed,age,location,fee,healthStatus,
   return (
     <Modal>
       
-            <Modal.Trigger>
-    <button className="
+            
+<Modal.Trigger>
+  <button
+    className="
       flex items-center justify-center gap-2
+      w-full h-11
       bg-gray-100 dark:bg-white/5
-      rounded-xl h-11 text-sm
-      flex-1
-      w-full
-    ">
-      <FaEdit />
-      Edit
-    </button>
-  </Modal.Trigger>
+      px-15 rounded-xl
+      text-sm font-medium
+      hover:bg-gray-200 dark:hover:bg-white/10
+      transition
+    "
+  >
+    <FaEdit />
+    Edit
+  </button>
+</Modal.Trigger>
+
+
 
 
       <Modal.Backdrop>

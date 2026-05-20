@@ -7,8 +7,12 @@ import { useRouter } from "next/navigation";
 import { FaEye, FaTrash, FaHeart } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import { RequestCancel } from "@/components/RequestCancel";
 
 export default function MyRequestPage() {
+  const handleRemove = (id) => {
+  setRequests((prev) => prev.filter((r) => r._id !== id));
+};
 
   const router = useRouter();
 
@@ -45,28 +49,7 @@ export default function MyRequestPage() {
 
   }, [user?.id]);
 
-  // CANCEL REQUEST (UI ONLY FOR NOW)
-  const handleCancel = async (id) => {
-
-    const ok = confirm("Are you sure you want to cancel?");
-
-    if (!ok) return;
-
-    try {
-
-      await fetch(`http://localhost:2000/adoption-request/${id}`, {
-        method: "DELETE",
-      });
-
-      setRequests((prev) => prev.filter((r) => r._id !== id));
-
-      toast.success("Request cancelled");
-
-    } catch {
-      toast.error("Failed to cancel");
-    }
-
-  };
+  
 
   if (loading) {
     return (
@@ -82,9 +65,12 @@ export default function MyRequestPage() {
       {/* HEADER */}
       <div className="text-center mb-10">
 
-        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white flex items-center justify-center gap-2">
-          <FaHeart className="text-pink-500" />
-          My Adoption Requests
+        <h1 className="text-4xl font-extrabold text-gray-900 dark:text-white flex items-center justify-center gap-2 ">
+          <FaHeart className="text-pink-300" />
+           {" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500">
+                      My   Adoption Requests
+            </span>
         </h1>
 
         <p className="text-gray-500 mt-2">
@@ -95,7 +81,7 @@ export default function MyRequestPage() {
 
       {/* EMPTY */}
       {requests.length === 0 ? (
-        <p className="text-center text-gray-500">
+        <p className="text-center text-gray-500 text-3xl font-bold">
           No Requests Found
         </p>
       ) : (
@@ -174,7 +160,7 @@ export default function MyRequestPage() {
                 </div>
 
                 {/* BUTTONS */}
-                <div className="flex flex-wrap gap-3 mt-6">
+                <div className="flex flex-wrap gap-3 mt-6 items-center ">
 
                   {/* VIEW */}
                   <button
@@ -194,22 +180,29 @@ export default function MyRequestPage() {
                   </button>
 
                   {/* CANCEL */}
-                  <button
-                    onClick={() => handleCancel(r._id)}
+                  {/* <button
+
                     className="
                       flex items-center gap-2
                       px-5 py-2.5
                       rounded-xl
                       border border-red-500
                       text-red-500
-                      hover:bg-red-500
+                      
                       hover:text-white
                       transition-all
                     "
                   >
                     <FaTrash />
                     Cancel
-                  </button>
+                  </button> */}
+                  {/* CANCEL */}
+<RequestCancel
+  requestId={r._id}
+    onSuccess={handleRemove}
+  
+  
+/>
 
                 </div>
 
