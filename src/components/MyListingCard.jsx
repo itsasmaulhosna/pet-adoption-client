@@ -10,6 +10,7 @@ import {
 
 import { EditModal } from "@/components/EditModal";
 import Link from "next/link";
+import { DeleteModal } from "./DeleteModal";
 
 export default function MyListingCard({ pet, onDelete }) {
   return (
@@ -82,17 +83,8 @@ export default function MyListingCard({ pet, onDelete }) {
           </Link>
 
           {/* DELETE */}
-          <button
-            onClick={() => onDelete?.(pet._id)}
-            className="
-              flex items-center justify-center gap-2
-              bg-gray-100 dark:bg-white/5
-              rounded-xl py-2 text-sm text-red-500
-            "
-          >
-            <FaTrash />
-            Delete
-          </button>
+
+          <DeleteModal pet={pet}/>
 
         </div>
       </div>

@@ -277,4 +277,3 @@ bg-gradient-to-r from-blue-400 via-pink-500 to-red-400
     </nav>
   );
 }
-
