@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -9,6 +10,7 @@ import { usePathname } from "next/navigation";
 import {
   FaHome,
   FaPaw,
+  FaHeart,
   FaUserCircle,
   FaBars,
   FaTimes,
@@ -101,6 +103,36 @@ export default function Navbar() {
               </Link>
             </li>
 
+            {/* ADD PETS */}
+            <li>
+              <Link
+                href="/dashboard/add-pet"
+                className={`flex items-center gap-2 transition-all duration-300 ${
+                  pathname === "/dashboard/add-pets"
+                    ? "text-pink-500"
+                    : "hover:text-pink-500"
+                }`}
+              >
+                <FaPaw />
+                Add Pets
+              </Link>
+            </li>
+
+            {/* MY REQUESTS */}
+            <li>
+              <Link
+                href="/dashboard/my-requests"
+                className={`flex items-center gap-2 transition-all duration-300 ${
+                  pathname === "/dashboard/my-request"
+                    ? "text-pink-500"
+                    : "hover:text-pink-500"
+                }`}
+              >
+                <FaHeart />
+                My Requests
+              </Link>
+            </li>
+
           </ul>
 
           {/* RIGHT SIDE */}
@@ -109,13 +141,13 @@ export default function Navbar() {
             {/* THEME TOGGLE */}
             <button
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              className="
-                w-10 h-10 rounded-full
+              className=
+                {`w-10 h-10 rounded-full
                 flex items-center justify-center
                 bg-gray-200 dark:bg-white/10
                 hover:scale-110
                 transition-all duration-300
-              "
+              `}
             >
               {isDark ? <FaMoon /> : <FaSun />}
             </button>
@@ -142,12 +174,12 @@ export default function Navbar() {
               {user ? (
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="
-                    flex items-center gap-2
+                  className=
+                    {`flex items-center gap-2
                     px-2 py-1 rounded-full
                     hover:bg-gray-100 dark:hover:bg-white/10
                     transition-all duration-300
-                  "
+                  `}
                 >
 
                   <Image
@@ -158,12 +190,12 @@ export default function Navbar() {
                     alt="user"
                     width={42}
                     height={42}
-                    className="
-                      w-[42px] h-[42px]
+                    className=
+                     {` w-[42px] h-[42px]
                       rounded-full
                       object-cover
                       border-2 border-pink-500
-                    "
+                    `}
                   />
 
                   <FaChevronDown
@@ -176,13 +208,13 @@ export default function Navbar() {
               ) : (
                 <Link
                   href="/login"
-                  className="
-                    hidden md:flex
+                  className=
+                    {`hidden md:flex
                     px-5 py-2 rounded-full
                     text-white font-semibold
                     bg-gradient-to-r from-blue-400 via-pink-500 to-red-400
                     shadow-lg hover:scale-105 transition-all duration-300
-                  "
+                  `}
                 >
                   Get Started
                 </Link>
@@ -191,15 +223,15 @@ export default function Navbar() {
               {/* DROPDOWN MENU */}
               {dropdownOpen && user && (
                 <div
-                  className="
-                    absolute right-0 top-14
+                  className=
+                    {`absolute right-0 top-14
                     w-64
                     bg-white dark:bg-[#0B1F3A]
                     border border-gray-200 dark:border-white/10
                     rounded-2xl shadow-2xl
                     overflow-hidden
                     z-[9999]
-                  "
+                  `}
                 >
 
                   {/* USER INFO */}
@@ -215,11 +247,11 @@ export default function Navbar() {
                         alt="user"
                         width={45}
                         height={45}
-                        className="
-                          w-[45px] h-[45px]
+                        className=
+                          {`w-[45px] h-[45px]
                           rounded-full
                           object-cover
-                        "
+                        `}
                       />
 
                       <div>
@@ -240,16 +272,17 @@ export default function Navbar() {
                   <Link
                     href="/dashboard"
                     onClick={() => setDropdownOpen(false)}
-                    className="
-                      flex items-center gap-3 px-5 py-4
+                    className=
+                      {`flex items-center gap-3 px-5 py-4
                       hover:bg-gray-100 dark:hover:bg-white/10
                       transition-all duration-300
-                    "
+                    `}
                   >
                     <FaTachometerAlt />
                     Dashboard
                   </Link>
 
+                  
                   {/* LOGOUT */}
                   <button
                     onClick={async () => {
@@ -261,12 +294,12 @@ export default function Navbar() {
                         },
                       });
                     }}
-                    className="
-                      w-full flex items-center gap-3 px-5 py-4
+                    className=
+                      {`w-full flex items-center gap-3 px-5 py-4
                       text-red-500
                       hover:bg-gray-100 dark:hover:bg-white/10
                       transition-all duration-300
-                    "
+                    `}
                   >
                     <FaSignOutAlt />
                     Logout
@@ -323,6 +356,34 @@ export default function Navbar() {
               All Pets
             </Link>
 
+            {/* ADD PETS */}
+            <Link
+              href="/dashboard/add-pets"
+              onClick={() => setMenuOpen(false)}
+              className={`flex items-center gap-3 transition-all duration-300 ${
+                pathname === "/dashboard/add-pets"
+                  ? "text-pink-500"
+                  : "hover:text-pink-500"
+              }`}
+            >
+              <FaPaw />
+              Add Pets
+            </Link>
+
+            {/* MY REQUESTS */}
+            <Link
+              href="/dashboard/my-request"
+              onClick={() => setMenuOpen(false)}
+              className={`flex items-center gap-3 transition-all duration-300 ${
+                pathname === "/dashboard/my-request"
+                  ? "text-pink-500"
+                  : "hover:text-pink-500"
+              }`}
+            >
+              <FaHeart />
+              My Requests
+            </Link>
+
             {!user && (
               <Link
                 href="/login"
@@ -351,12 +412,12 @@ export default function Navbar() {
                     alt="user"
                     width={45}
                     height={45}
-                    className="
-                      w-[45px] h-[45px]
+                    className=
+                      {`w-[45px] h-[45px]
                       rounded-full
                       object-cover
                       border-2 border-pink-500
-                    "
+                    `}
                   />
 
                   <div>
@@ -375,11 +436,11 @@ export default function Navbar() {
                 <Link
                   href="/dashboard"
                   onClick={() => setMenuOpen(false)}
-                  className="
-                    flex items-center gap-3
+                  className=
+                    {`flex items-center gap-3
                     hover:text-pink-500
                     transition-all duration-300
-                  "
+                  `}
                 >
                   <FaTachometerAlt />
                   Dashboard
@@ -396,10 +457,10 @@ export default function Navbar() {
                       },
                     });
                   }}
-                  className="
-                    flex items-center gap-3
+                  className=
+                    {`flex items-center gap-3
                     text-red-500
-                  "
+                  `}
                 >
                   <FaSignOutAlt />
                   Logout
@@ -415,3 +476,4 @@ export default function Navbar() {
     </nav>
   );
 }
+

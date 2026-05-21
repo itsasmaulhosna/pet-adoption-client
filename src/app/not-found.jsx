@@ -11,8 +11,8 @@ export default function NotFound() {
 
   return (
     <div
-      className="
-      min-h-screen
+      className=
+      {`min-h-screen
       flex items-center justify-center
       px-5
 
@@ -22,12 +22,12 @@ export default function NotFound() {
       dark:from-[#06142E]
       dark:via-[#0B1F3A]
       dark:to-[#10254A]
-    "
+    `}
     >
 
       <div
-        className="
-        max-w-2xl w-full
+        className=
+        {`max-w-2xl w-full
         text-center
 
         bg-white/80 dark:bg-white/5
@@ -39,13 +39,13 @@ export default function NotFound() {
         shadow-2xl
 
         p-10 md:p-16
-      "
+      `}
       >
 
         {/* ICON */}
         <div
-          className="
-          mx-auto mb-6
+          className=
+          {`mx-auto mb-6
 
           w-24 h-24
           rounded-full
@@ -56,47 +56,47 @@ export default function NotFound() {
           from-pink-500 via-rose-500 to-cyan-500
 
           text-white text-4xl
-        "
+        `}
         >
           <FaPaw />
         </div>
 
         {/* 404 */}
         <h1
-          className="
-          text-7xl md:text-8xl
+          className=
+          {`text-7xl md:text-8xl
           font-extrabold
 
           bg-gradient-to-r
           from-cyan-500 via-blue-600 to-indigo-700
 
           bg-clip-text text-transparent
-        "
+        `}
         >
           404
         </h1>
 
         {/* TITLE */}
         <h2
-          className="
-          mt-5
+          className=
+          {`mt-5
           text-3xl md:text-4xl
           font-bold
 
           text-gray-800 dark:text-white
-        "
+        `}
         >
           Oops! Page Not Found
         </h2>
 
         {/* DESCRIPTION */}
         <p
-          className="
-          mt-4
+          className=
+          {`mt-4
           text-gray-600 dark:text-gray-300
           leading-8
           max-w-xl mx-auto
-        "
+        `}
         >
           Looks like this cute pet wandered away 🐾
           The page you're looking for doesn't exist
@@ -105,19 +105,19 @@ export default function NotFound() {
 
         {/* BUTTONS */}
         <div
-          className="
-          mt-10
+          className=
+          {`mt-10
           flex flex-col sm:flex-row
           items-center justify-center
           gap-4
-        "
+        `}
         >
 
           {/* HOME BUTTON */}
           <Link
             href="/"
-            className="
-              flex items-center gap-2
+            className=
+              {`flex items-center gap-2
 
               px-7 py-3
               rounded-2xl
@@ -130,7 +130,7 @@ export default function NotFound() {
               shadow-lg
               hover:scale-105
               transition-all duration-300
-            "
+            `}
           >
             <FaHome />
             Back To Home
@@ -139,8 +139,8 @@ export default function NotFound() {
           {/* PET BUTTON */}
           <Link
             href="/pet"
-            className="
-              flex items-center gap-2
+            className=
+              {`flex items-center gap-2
 
               px-7 py-3
               rounded-2xl
@@ -154,7 +154,7 @@ export default function NotFound() {
               dark:hover:bg-white/20
 
               transition-all duration-300
-            "
+            `}
           >
             <FaSearch />
             Browse Pets

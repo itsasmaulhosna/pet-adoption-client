@@ -22,7 +22,7 @@ const { _id,petName,imageUrl,species,gender,breed,age,location,fee,healthStatus,
         try {
           setLoading(true);
     
-          const res = await fetch(`http://localhost:2000/allPets/${_id}`, {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allPets/${_id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -56,15 +56,15 @@ const { _id,petName,imageUrl,species,gender,breed,age,location,fee,healthStatus,
             
 <Modal.Trigger>
   <button
-    className="
-      flex items-center justify-center gap-2
+    className=
+      {`flex items-center justify-center gap-2
       w-full h-11
       bg-gray-100 dark:bg-white/5
       px-15 rounded-xl
       text-sm font-medium
       hover:bg-gray-200 dark:hover:bg-white/10
       transition
-    "
+    `}
   >
     <FaEdit />
     Edit

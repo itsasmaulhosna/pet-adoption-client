@@ -15,7 +15,7 @@ export function RequestCancel({ requestId, onSuccess }) {
       setLoading(true);
 
       const res = await fetch(
-        `http://localhost:2000/adoption-request/${requestId}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-request/${requestId}`,
         {
           method: "DELETE",
           headers: {

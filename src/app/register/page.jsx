@@ -58,28 +58,28 @@ const RegisterPage = () => {
   const password = watch("password");
 
   return (
-    <div className="
-      min-h-screen flex items-center justify-center px-4 py-10
+    <div className=
+      {`min-h-screen flex items-center justify-center px-4 py-10
       bg-gradient-to-br from-slate-100 via-blue-50 to-cyan-100
       dark:from-[#06142E] dark:via-[#0B1F3A] dark:to-[#10254A]
-    ">
+    `}>
 
-      <div className="
-        w-full max-w-md p-8 rounded-3xl
+      <div className=
+        {`w-full max-w-md p-8 rounded-3xl
         bg-white/90 dark:bg-white/10
         backdrop-blur-xl
         border border-white/20
         shadow-2xl
-      ">
+      `}>
 
         {/* ICON */}
         <div className="flex justify-center mb-4">
-          <div className="
-            w-20 h-20 rounded-full
+          <div className=
+            {`w-20 h-20 rounded-full
             flex items-center justify-center
             bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700
             text-white text-3xl shadow-lg
-          ">
+            `}>
             <FaUser />
           </div>
         </div>
@@ -97,8 +97,8 @@ const RegisterPage = () => {
         <button 
   type="button"
   onClick={handleGoogleSignIn}
-  className="
-  flex items-center justify-center gap-3
+  className=
+  {`flex items-center justify-center gap-3
   w-full py-3 rounded-xl
   border border-gray-200 dark:border-white/10
   bg-white dark:bg-white/5
@@ -106,7 +106,7 @@ const RegisterPage = () => {
   transition-all duration-300
   font-semibold
   text-blue-500
-  "
+  `}
 >
   <FaGoogle />
   Continue with Google
@@ -133,13 +133,13 @@ const RegisterPage = () => {
             </label>
             <input
               {...register("name", { required: "Name is required" })}
-              className="
-                w-full mt-1 px-4 py-3 rounded-xl
+              className=
+                {`w-full mt-1 px-4 py-3 rounded-xl
                 border border-gray-300 dark:border-white/10
                 bg-white dark:bg-white/5
                 text-gray-800 dark:text-white
                 outline-none focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               placeholder="Enter your full name"
             />
             {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
@@ -152,13 +152,13 @@ const RegisterPage = () => {
             </label>
             <input
               {...register("email", { required: "Email is required" })}
-              className="
-                w-full mt-1 px-4 py-3 rounded-xl
+              className=
+                {`w-full mt-1 px-4 py-3 rounded-xl
                 border border-gray-300 dark:border-white/10
                 bg-white dark:bg-white/5
                 text-gray-800 dark:text-white
                 outline-none focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               placeholder="Enter your email address"
             />
             {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -171,13 +171,13 @@ const RegisterPage = () => {
             </label>
             <input
               {...register("photo")}
-              className="
-                w-full mt-1 px-4 py-3 rounded-xl
+              className=
+                {`w-full mt-1 px-4 py-3 rounded-xl
                 border border-gray-300 dark:border-white/10
                 bg-white dark:bg-white/5
                 text-gray-800 dark:text-white
                 outline-none focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               placeholder="Paste profile image URL"
             />
           </div>
@@ -194,13 +194,13 @@ const RegisterPage = () => {
                 required: "Password is required",
                 minLength: 6
               })}
-              className="
-                w-full mt-1 px-4 py-3 rounded-xl
+              className=
+                {`w-full mt-1 px-4 py-3 rounded-xl
                 border border-gray-300 dark:border-white/10
                 bg-white dark:bg-white/5
                 text-gray-800 dark:text-white
                 outline-none focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               placeholder="Create password"
             />
 
@@ -228,13 +228,13 @@ const RegisterPage = () => {
                 required: "Confirm password is required",
                 validate: value => value === password || "Passwords do not match"
               })}
-              className="
-                w-full mt-1 px-4 py-3 rounded-xl
+              className=
+                {`w-full mt-1 px-4 py-3 rounded-xl
                 border border-gray-300 dark:border-white/10
                 bg-white dark:bg-white/5
                 text-gray-800 dark:text-white
                 outline-none focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               placeholder="Confirm password"
             />
 
@@ -260,11 +260,11 @@ const RegisterPage = () => {
           </div>
 
           {/* BUTTON */}
-          <button className="
-            w-full py-3 rounded-xl font-bold text-white
+          <button className=
+            {`w-full py-3 rounded-xl font-bold text-white
             bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700
             hover:scale-[1.02] transition
-          ">
+          `}>
             Register
           </button>
 

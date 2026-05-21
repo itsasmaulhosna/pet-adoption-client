@@ -5,7 +5,7 @@ import { FaPaw } from "react-icons/fa";
 import PetCard from "../PetCard";
 
 const FeaturedPet = async () => {
-  const res = await fetch("http://localhost:2000/featured", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/featured`, {
     cache: "no-store",
   });
 

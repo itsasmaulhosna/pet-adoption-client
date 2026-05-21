@@ -59,8 +59,8 @@ const handleGoogleSignIn =async()=>{
   return (
 
     <div
-      className="
-      min-h-screen
+      className=
+      {`min-h-screen
       flex items-center justify-center
       px-4 py-10
       bg-gradient-to-br
@@ -72,28 +72,28 @@ const handleGoogleSignIn =async()=>{
       dark:via-[#0B1F3A]
       dark:to-[#10254A]
       transition-all duration-500
-      "
+      `}
     >
 
       {/* LOGIN CARD */}
       <div
-        className="
-        w-full max-w-md
+        className=
+        {`w-full max-w-md
         rounded-3xl
         bg-white/90 dark:bg-white/10
         backdrop-blur-xl
         border border-white/20
         shadow-2xl
         p-8
-        "
+        `}
       >
 
         {/* TOP ICON */}
         <div className="flex justify-center mb-5">
 
           <div
-            className="
-            w-20 h-20 rounded-full
+            className=
+            {`w-20 h-20 rounded-full
             flex items-center justify-center
             bg-gradient-to-r
             from-cyan-500
@@ -101,7 +101,7 @@ const handleGoogleSignIn =async()=>{
             to-indigo-700
             text-white text-3xl
             shadow-lg
-            "
+            `}
           >
             <FaLock />
           </div>
@@ -110,27 +110,27 @@ const handleGoogleSignIn =async()=>{
 
         {/* HEADING */}
         <h2
-          className="
-          text-3xl font-extrabold text-center
+          className=
+          {`text-3xl font-extrabold text-center
           text-gray-800 dark:text-white
-          "
+          `}
         >
           Welcome Back
         </h2>
 
         <p
-          className="
-          text-center mt-2 mb-6
+          className=
+          {`text-center mt-2 mb-6
           text-gray-500 dark:text-gray-300
-          "
+          `}
         >
           Login to continue to PetNest 🐾
         </p>
 
         {/* GOOGLE BUTTON */}
         <button onClick={handleGoogleSignIn}
-          className="
-          flex items-center justify-center gap-3
+          className=
+          {`flex items-center justify-center gap-3
           w-full py-3 rounded-xl
           border border-gray-200 dark:border-white/10
           bg-white dark:bg-white/5
@@ -138,7 +138,7 @@ const handleGoogleSignIn =async()=>{
           transition-all duration-300
           font-semibold
           text-blue-500
-          "
+          `}
         >
           <FaGoogle />
           Continue with Google
@@ -164,24 +164,24 @@ const handleGoogleSignIn =async()=>{
           <fieldset>
 
             <legend
-              className="
-              mb-2 font-medium
+              className=
+              {`mb-2 font-medium
               text-gray-700 dark:text-gray-200
-              "
+              `}
             >
               Email Address
             </legend>
 
             <input
               type="email"
-              className="
-              w-full px-4 py-3 rounded-xl
+              className=
+              {`w-full px-4 py-3 rounded-xl
               border border-gray-300 dark:border-white/10
               bg-white dark:bg-white/5
               text-gray-800 dark:text-white
               outline-none
               focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               {...register("email", {
                 required: 'Email is required'
               })}
@@ -200,10 +200,10 @@ const handleGoogleSignIn =async()=>{
           <fieldset className="relative">
 
             <legend
-              className="
-              mb-2 font-medium
+              className=
+              {`mb-2 font-medium
               text-gray-700 dark:text-gray-200
-              "
+              `}
             >
               Password
             </legend>
@@ -213,14 +213,14 @@ const handleGoogleSignIn =async()=>{
               {...register("password", {
                 required: 'Password is required'
               })}
-              className="
-              w-full px-4 py-3 rounded-xl
+              className=
+              {`w-full px-4 py-3 rounded-xl
               border border-gray-300 dark:border-white/10
               bg-white dark:bg-white/5
               text-gray-800 dark:text-white
               outline-none
               focus:ring-2 focus:ring-cyan-500
-              "
+              `}
               placeholder="Enter password"
             />
 
@@ -242,28 +242,16 @@ const handleGoogleSignIn =async()=>{
               </p>
             )}
 
-            {/* PASSWORD RULES
-            <div
-              className="
-              mt-4 space-y-1 text-sm
-              text-gray-500 dark:text-gray-300
-              "
-            >
 
-              <p>• At least 6 characters</p>
-
-              <p>• One uppercase letter</p>
-
-              <p>• One lowercase letter</p>
-
-            </div> */}
+            
+            
 
           </fieldset>
 
           {/* LOGIN BUTTON */}
           <button
-            className="
-            w-full py-3 rounded-xl
+            className=
+            {`w-full py-3 rounded-xl
             text-white font-bold
             bg-gradient-to-r
             from-cyan-500
@@ -272,7 +260,7 @@ const handleGoogleSignIn =async()=>{
             hover:scale-[1.02]
             transition-all duration-300
             shadow-lg
-            "
+            `}
           >
             Login
           </button>
@@ -281,10 +269,10 @@ const handleGoogleSignIn =async()=>{
 
         {/* REGISTER */}
         <p
-          className="
-          mt-6 text-center text-sm
+          className=
+          {`mt-6 text-center text-sm
           text-gray-600 dark:text-gray-300
-          "
+          `}
         >
           Don't have an account?{" "}
 

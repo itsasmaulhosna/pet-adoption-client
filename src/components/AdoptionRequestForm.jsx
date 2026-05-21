@@ -50,7 +50,7 @@ export default function AdoptionRequestForm({ pet }) {
       setLoading(true);
 
       const res = await fetch(
-        "http://localhost:2000/adoption-request",
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-request`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -175,13 +175,13 @@ export default function AdoptionRequestForm({ pet }) {
         {/* BUTTON */}
         <button
           disabled={loading}
-          className="
-            w-full py-3 rounded-xl
+          className=
+            {`w-full py-3 rounded-xl
             font-semibold text-white
             bg-gradient-to-r from-pink-500 via-rose-500 to-cyan-500
             flex items-center justify-center gap-2
             disabled:opacity-60
-          "
+          `}
         >
 
           {loading ? (

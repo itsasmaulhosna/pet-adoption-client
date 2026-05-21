@@ -5,10 +5,10 @@ import { FaArrowRight, FaPaw } from "react-icons/fa";
 
 export default function Banner() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center
+    <section className={`relative overflow-hidden min-h-screen flex items-center
       bg-gradient-to-br from-white via-slate-100 to-slate-200
       dark:from-[#06142E] dark:via-[#0B1F3A] dark:to-[#10254A]
-      transition-colors duration-500">
+      transition-colors duration-500`}>
 
       {/* BACKGROUND EFFECTS */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-pink-500/20 blur-3xl rounded-full animate-pulse"></div>
@@ -23,8 +23,8 @@ export default function Banner() {
             Find Your Perfect Companion 🐾
           </p>
 
-          <h1 className="text-5xl lg:text-7xl font-extrabold leading-tight
-            text-gray-900 dark:text-white">
+          <h1 className={`text-5xl lg:text-7xl font-extrabold leading-tight
+            text-gray-900 dark:text-white`}>
             Give a Pet a{" "}
             <span className="bg-gradient-to-r from-blue-500 via-pink-500 to-red-400 bg-clip-text text-transparent">
               Loving Home

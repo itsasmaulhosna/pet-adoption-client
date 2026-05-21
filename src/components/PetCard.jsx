@@ -27,8 +27,8 @@ const PetCard = ({ pet }) => {
 
   return (
     <div
-      className="
-      group
+      className=
+      {`group
       overflow-hidden
 
       rounded-3xl
@@ -42,7 +42,7 @@ const PetCard = ({ pet }) => {
 
       transition-all duration-500
       hover:-translate-y-2
-      "
+      `}
     >
 
       {/* IMAGE */}
@@ -52,17 +52,17 @@ const PetCard = ({ pet }) => {
           src={imageUrl}
           alt={petName}
           fill
-          className="
-          object-cover
+          className=
+          {`object-cover
           group-hover:scale-110
           transition-transform duration-700
-          "
+          `}
         />
 
         {/* SPECIES BADGE */}
         <div
-          className="
-          absolute top-4 left-4
+          className=
+          {`absolute top-4 left-4
 
           px-4 py-1 rounded-full
 
@@ -72,7 +72,7 @@ const PetCard = ({ pet }) => {
           from-cyan-500 via-blue-600 to-indigo-700
 
           shadow-lg
-          "
+          `}
         >
           {species}
         </div>
@@ -83,8 +83,8 @@ const PetCard = ({ pet }) => {
 
         {/* PET NAME */}
         <h2
-          className="
-          text-2xl font-bold
+          className=
+          {`text-2xl font-bold
 
           text-gray-800 dark:text-white
 
@@ -92,7 +92,7 @@ const PetCard = ({ pet }) => {
           dark:group-hover:text-cyan-400
 
           transition-colors duration-300
-          "
+          `}
         >
           {petName}
         </h2>
@@ -102,38 +102,38 @@ const PetCard = ({ pet }) => {
 
           {/* BREED */}
           <div
-            className="
-            px-3 py-1 rounded-full
+            className=
+            {`px-3 py-1 rounded-full
 
             bg-cyan-100 dark:bg-cyan-500/10
 
             text-cyan-700 dark:text-cyan-300
 
             text-sm font-medium
-            "
+            `}
           >
             <span className="font-semibold">Breed:</span> {breed}
           </div>
 
           {/* AGE */}
           <div
-            className="
-            px-3 py-1 rounded-full
+            className=
+            {`px-3 py-1 rounded-full
 
             bg-pink-100 dark:bg-pink-500/10
 
             text-pink-700 dark:text-pink-300
 
             text-sm font-medium
-            "
+            `}
           >
             <span className="font-semibold">Age:</span> {age}
           </div>
 
           {/* GENDER */}
           <div
-            className="
-            flex items-center gap-2
+            className=
+            {`flex items-center gap-2
 
             px-3 py-1 rounded-full
 
@@ -142,7 +142,7 @@ const PetCard = ({ pet }) => {
             text-indigo-700 dark:text-indigo-300
 
             text-sm font-medium
-            "
+            `}
           >
             {gender === "Male" ? <FaMars /> : <FaVenus />}
 
@@ -169,14 +169,14 @@ const PetCard = ({ pet }) => {
             <FaMoneyBillWave className="text-green-500" />
 
             <span
-              className="
-              text-lg font-bold
+              className=
+              {`text-lg font-bold
 
               bg-gradient-to-r
               from-cyan-500 to-blue-700
 
               bg-clip-text text-transparent
-              "
+              `}
             >
               $ {fee}
             </span>
@@ -189,8 +189,8 @@ const PetCard = ({ pet }) => {
           {/* VIEW DETAILS */}
           <Link
             href={`/pet/${_id}`}
-            className="
-            flex-1 flex items-center justify-center gap-2
+            className=
+            {`flex-1 flex items-center justify-center gap-2
 
             py-3 rounded-2xl
 
@@ -203,7 +203,7 @@ const PetCard = ({ pet }) => {
             hover:text-white
 
             transition-all duration-300
-            "
+            `}
           >
             <FaEye />
 
@@ -212,8 +212,8 @@ const PetCard = ({ pet }) => {
 
           {/* ADOPT NOW */}
           <button
-            className="
-            flex-1
+            className=
+            {`flex-1
 
             py-3 rounded-2xl
 
@@ -227,7 +227,7 @@ const PetCard = ({ pet }) => {
             transition-all duration-300
 
             shadow-lg
-            "
+            `}
           >
             Adopt Now
           </button>

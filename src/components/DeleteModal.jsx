@@ -11,7 +11,7 @@ export function DeleteModal({ pet }) {
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:2000/allPets/${_id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allPets/${_id}`, {
         method: "DELETE",
       });
 
@@ -26,15 +26,15 @@ export function DeleteModal({ pet }) {
     <AlertDialog>
       
       <Button
-        className="
-      flex items-center justify-center gap-2
+        className=
+      {`flex items-center justify-center gap-2
        h-11
       bg-gray-100 dark:bg-white/5
       px-14 rounded-xl
       text-sm font-medium
       hover:bg-gray-200 dark:hover:bg-white/10
       transition
-    "
+    `}
       >
         <TrashBin />
         Delete
@@ -72,13 +72,13 @@ export function DeleteModal({ pet }) {
 
               <Button
                 slot="close"
-                className="
-                  flex-1
+                className=
+                  {`flex-1
                   bg-gray-100 dark:bg-white/5
                   rounded-xl py-2 text-sm
                   hover:bg-gray-200 dark:hover:bg-white/10
                   transition
-                "
+                `}
               >
                 Cancel
               </Button>
@@ -86,14 +86,14 @@ export function DeleteModal({ pet }) {
               <Button
                 onClick={handleDelete}
                 slot="close"
-                className="
-                  flex-1
+                className=
+                  {`flex-1
                   bg-gray-100 dark:bg-white/5
                   rounded-xl py-2 text-sm
                   text-red-500
                   hover:bg-red-50 dark:hover:bg-red-500/10
                   transition
-                "
+                `}
               >
                 <TrashBin />
                 Delete

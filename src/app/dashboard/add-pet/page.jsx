@@ -30,7 +30,7 @@ export default function AddPetPage() {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:2000/allPets", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allPets`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

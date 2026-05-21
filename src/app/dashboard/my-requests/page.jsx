@@ -31,7 +31,7 @@ export default function MyRequestPage() {
       try {
 
         const res = await fetch(
-          `http://localhost:2000/adoption-request/${user.id}`
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-request/${user.id}`
         );
 
         const data = await res.json();
@@ -92,8 +92,8 @@ export default function MyRequestPage() {
 
             <div
               key={r._id}
-              className="
-                flex flex-col md:flex-row
+              className=
+                {`flex flex-col md:flex-row
                 bg-white dark:bg-[#0d1528]
                 rounded-3xl
                 shadow-xl
@@ -101,7 +101,7 @@ export default function MyRequestPage() {
                 border border-gray-100 dark:border-white/10
                 hover:scale-[1.01]
                 transition-all duration-300
-              "
+              `}
             >
 
               {/* IMAGE (BIGGER NOW) */}
@@ -122,11 +122,11 @@ export default function MyRequestPage() {
                 <div>
 
                   {/* NAME (COLOR + GRADIENT) */}
-                  <h2 className="
-                    text-3xl font-bold
+                  <h2 className=
+                    {`text-3xl font-bold
                     bg-gradient-to-r from-pink-500 via-rose-500 to-cyan-500
                     bg-clip-text text-transparent
-                  ">
+                  `}>
                     {r.petName}
                   </h2>
 
@@ -147,10 +147,10 @@ export default function MyRequestPage() {
 
                     <div>
                       <p className="text-gray-500">Status</p>
-                      <span className="
-                        inline-block px-3 py-1 rounded-full text-xs font-semibold
+                      <span className=
+                        {`inline-block px-3 py-1 rounded-full text-xs font-semibold
                         bg-yellow-100 text-yellow-700
-                      ">
+                      `}>
                         {r.status}
                       </span>
                     </div>
@@ -165,44 +165,30 @@ export default function MyRequestPage() {
                   {/* VIEW */}
                   <button
                     onClick={() => router.push(`/pet/${r.petId}`)}
-                    className="
-                      flex items-center gap-2
+                    className=
+                      {`flex items-center gap-2
                       px-5 py-2.5
                       rounded-xl
                       bg-gradient-to-r from-pink-500 to-rose-500
                       text-white
                       hover:opacity-90
                       transition-all
-                    "
+                    `}
                   >
                     <FaEye />
                     View Details
                   </button>
 
                   {/* CANCEL */}
-                  {/* <button
-
-                    className="
-                      flex items-center gap-2
-                      px-5 py-2.5
-                      rounded-xl
-                      border border-red-500
-                      text-red-500
-                      
-                      hover:text-white
-                      transition-all
-                    "
-                  >
-                    <FaTrash />
-                    Cancel
-                  </button> */}
-                  {/* CANCEL */}
+                  
+                  
 <RequestCancel
   requestId={r._id}
     onSuccess={handleRemove}
   
   
 />
+{/* CANCEL */}
 
                 </div>
 

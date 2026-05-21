@@ -17,7 +17,7 @@ import { EditModal } from "@/components/EditModal";
 export default async function PetDetailsPage({ params }) {
   const { id } =await params;
 
-  const res = await fetch(`http://localhost:2000/allPets/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allPets/${id}`, {
     cache: "no-store",
   });
 
@@ -114,12 +114,12 @@ export default async function PetDetailsPage({ params }) {
             <EditModal
   pet={pet}
   trigger={
-    <button className="
-      px-4 py-2 rounded-xl
+    <button className=
+      {`px-4 py-2 rounded-xl
       flex items-center gap-2
       bg-gray-100 dark:bg-white/5
       hover:bg-gray-200 dark:hover:bg-white/10
-    ">
+    `}>
       <FaEdit />
       Edit
     </button>

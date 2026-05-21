@@ -4,11 +4,11 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope, FaPhone } from "react-
 
 const Footer = () => {
   return (
-    <footer className="
-      relative overflow-hidden pt-16 pb-8
+    <footer className=
+      {`relative overflow-hidden pt-16 pb-8
       bg-white dark:bg-[#06142E]
       text-gray-700 dark:text-gray-300
-      border-t border-gray-200 dark:border-white/10">
+      border-t border-gray-200 dark:border-white/10`}>
 
       {/* BACKGROUND EFFECTS */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-pink-500/10 blur-3xl rounded-full"></div>

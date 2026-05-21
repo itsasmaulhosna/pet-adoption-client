@@ -8,12 +8,12 @@ export default function MyListings() {
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔄 fetch function (reuse for refresh)
+  
   const fetchPets = async () => {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:2000/allPets");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allPets`);
       const data = await res.json();
 
       setPets(data);
@@ -28,12 +28,12 @@ export default function MyListings() {
     fetchPets();
   }, []);
 
-  // 📊 stats
+  
   const total = pets.length;
   const adopted = pets.filter((p) => p.isAdopted).length;
   const available = total - adopted;
 
-  // ⏳ loading UI
+  
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">

@@ -16,7 +16,7 @@ export default function AdoptionRequestModal({ pet, onUpdate }) {
 
   const loadRequest = async () => {
     const res = await fetch(
-      `http://localhost:2000/adoption-request/pet/${pet._id}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/adoption-request/pet/${pet._id}`
     );
     const data = await res.json();
     setRequest(data);
@@ -30,7 +30,7 @@ export default function AdoptionRequestModal({ pet, onUpdate }) {
   const approve = async () => {
     setLoading(true);
 
-    await fetch(`http://localhost:2000/adoption/approve/${pet._id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/adoption/approve/${pet._id}`, {
       method: "PATCH",
     });
 
@@ -44,7 +44,7 @@ export default function AdoptionRequestModal({ pet, onUpdate }) {
   const cancel = async () => {
     setLoading(true);
 
-    await fetch(`http://localhost:2000/adoption/cancel/${pet._id}`, {
+    await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/adoption/cancel/${pet._id}`, {
       method: "PATCH",
     });
 
@@ -164,11 +164,11 @@ export default function AdoptionRequestModal({ pet, onUpdate }) {
                       <button
                         onClick={approve}
                         disabled={loading}
-                        className="
-                          flex-1 py-2 rounded-xl text-white font-bold
+                        className=
+                          {`flex-1 py-2 rounded-xl text-white font-bold
                           bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500
                           hover:scale-[1.02] transition
-                        "
+                        `}
                       >
                         <FaCheck className="inline mr-1" />
                         Approve
@@ -178,10 +178,10 @@ export default function AdoptionRequestModal({ pet, onUpdate }) {
                       <button
                         onClick={cancel}
                         disabled={loading}
-                        className="
-                          flex-1 py-2 rounded-xl text-white font-bold
+                        className=
+                          {`flex-1 py-2 rounded-xl text-white font-bold
                           bg-red-500 hover:bg-red-600 transition
-                        "
+                        `}
                       >
                         <FaTimes className="inline mr-1" />
                         Cancel
