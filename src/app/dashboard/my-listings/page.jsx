@@ -5,21 +5,35 @@ import { FaPaw, FaHeart, FaCheckCircle } from "react-icons/fa";
 import MyListingCard from "@/components/MyListingCard";
 
 export default function MyListings() {
-
   const [pets, setPets] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // 🔄 fetch function (reuse for refresh)
+  const fetchPets = async () => {
+    try {
+      setLoading(true);
+
+      const res = await fetch("http://localhost:2000/allPets");
+      const data = await res.json();
+
+      setPets(data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    fetch("http://localhost:2000/allPets")
-      .then(res => res.json())
-      .then(data => setPets(data))
-      .finally(() => setLoading(false));
+    fetchPets();
   }, []);
 
+  // 📊 stats
   const total = pets.length;
-  const adopted = pets.filter(p => p.isAdopted).length;
+  const adopted = pets.filter((p) => p.isAdopted).length;
   const available = total - adopted;
 
+  // ⏳ loading UI
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -32,52 +46,56 @@ export default function MyListings() {
     <div className="p-6 md:p-10">
 
       {/* HEADER */}
-      <div className="mb-6">
+      <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
           <div className="p-3 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 text-white">
             <FaPaw />
           </div>
 
           <h1 className="text-3xl font-bold">
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500">
+            My{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500">
               Listings
             </span>
           </h1>
         </div>
 
-        <p className="text-gray-500 max-w-xl">
-          Manage your pets, track adoption, and update listings.
+        <p className="text-gray-500">
+          Manage pets, approve adoption requests, and track status.
         </p>
       </div>
 
       {/* STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
 
+        {/* TOTAL */}
         <div className="p-5 rounded-2xl bg-white dark:bg-[#0d1528] shadow">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
-              <p>Total Listings</p>
-              <h2 className="text-pink-500 text-3xl font-bold">{total}</h2>
+              <p className="text-gray-500">Total Listings</p>
+              <h2 className="text-3xl font-bold text-pink-500">{total}</h2>
             </div>
             <FaPaw className="text-pink-500 text-2xl" />
           </div>
         </div>
 
+        {/* AVAILABLE */}
         <div className="p-5 rounded-2xl bg-white dark:bg-[#0d1528] shadow">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
-              <p>Available</p>
-              <h2 className="text-cyan-500 text-3xl font-bold">{available}</h2>
+              <p className="text-gray-500">Available</p>
+              <h2 className="text-3xl font-bold text-cyan-500">{available}</h2>
             </div>
             <FaHeart className="text-cyan-500 text-2xl" />
           </div>
         </div>
 
+        {/* ADOPTED */}
         <div className="p-5 rounded-2xl bg-white dark:bg-[#0d1528] shadow">
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center">
             <div>
-              <p>Adopted</p>
-              <h2 className="text-green-500 text-3xl font-bold">{adopted}</h2>
+              <p className="text-gray-500">Adopted</p>
+              <h2 className="text-3xl font-bold text-green-500">{adopted}</h2>
             </div>
             <FaCheckCircle className="text-green-500 text-2xl" />
           </div>
@@ -86,14 +104,23 @@ export default function MyListings() {
       </div>
 
       {/* GRID */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {pets.length === 0 ? (
+        <div className="text-center text-gray-500 mt-20">
+          No pets found 🐾
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-        {pets.map(pet => (
-          <MyListingCard key={pet._id} pet={pet} />
-        ))}
+          {pets.map((pet) => (
+            <MyListingCard
+              key={pet._id}
+              pet={pet}
+              onUpdate={fetchPets}   
+            />
+          ))}
 
-      </div>
-
+        </div>
+      )}
     </div>
   );
 }
