@@ -7,6 +7,7 @@ import {
   FaTimes,
   FaExclamationTriangle,
   FaPaw,
+  FaPaperPlane,
 } from "react-icons/fa";
 
 export default function AdoptionRequestModal({ pet, onUpdate }) {
@@ -59,11 +60,19 @@ export default function AdoptionRequestModal({ pet, onUpdate }) {
     <>
       {/* BUTTON */}
       <button
-        onClick={openModal}
-        className="px-3 py-2 rounded-xl bg-gray-100 dark:bg-white/5 hover:scale-105 transition"
-      >
-        Request
-      </button>
+  onClick={openModal}
+  className="
+    flex items-center justify-center gap-2
+    w-full h-full
+    px-3 py-2 rounded-xl
+    bg-gray-100 dark:bg-white/5
+    hover:scale-105 transition
+    text-sm font-medium
+  "
+>
+  <FaPaperPlane />
+  Request
+</button>
 
       {/* MODAL */}
       {open && (

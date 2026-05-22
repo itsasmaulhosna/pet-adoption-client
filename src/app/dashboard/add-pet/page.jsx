@@ -1,42 +1,69 @@
-
 "use client";
 
-import { useState } from "react";
- import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 import {
   TextField,
   Input,
   Label,
-  FieldError,
   TextArea,
   Button,
 } from "@heroui/react";
 
+import { authClient } from "@/lib/auth-client";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
 export default function AddPetPage() {
-   const router = useRouter();
+  const router = useRouter();
+
   const [loading, setLoading] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(true);
+  const [user, setUser] = useState(null);
+
+  // get logged-in user
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const session = await authClient.getSession();
+        setUser(session?.data?.user || null);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoadingUser(false);
+      }
+    };
+
+    getUser();
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
+    if (!user?.email) {
+      toast.error("You must be logged in!");
+      return;
+    }
+
     const formData = new FormData(e.target);
     const pet = Object.fromEntries(formData.entries());
 
-    // include owner email
-    pet.ownerEmail = "user@email.com";
+    pet.ownerEmail = user.email;
 
     try {
       setLoading(true);
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allPets`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(pet),
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/allPets`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(pet),
+        }
+      );
 
       const data = await res.json();
 
@@ -50,8 +77,7 @@ export default function AddPetPage() {
 
       setTimeout(() => {
         router.push("/pet");
-      }, 4000);
-
+      }, 2000);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -61,7 +87,6 @@ export default function AddPetPage() {
 
   return (
     <div className="min-h-screen p-6 bg-gradient-to-br from-slate-100 via-blue-50 to-cyan-100 dark:from-[#06142E] dark:via-[#0B1F3A] dark:to-[#10254A]">
-
       <div className="max-w-6xl mx-auto">
 
         <h1 className="text-3xl font-bold mb-8 text-gray-800 dark:text-white">
@@ -74,6 +99,19 @@ export default function AddPetPage() {
         >
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {/* Owner Email */}
+            <TextField className="md:col-span-2">
+              <Label>Owner Email</Label>
+
+              {loadingUser ? (
+                <div className="py-3">
+                  <LoadingSpinner />
+                </div>
+              ) : (
+                <Input value={user?.email || ""} isReadOnly />
+              )}
+            </TextField>
 
             <TextField name="petName" isRequired className="md:col-span-2">
               <Label>Pet Name</Label>
@@ -132,30 +170,30 @@ export default function AddPetPage() {
 
           </div>
 
+          {/* Submit Button */}
           <Button
-  type="submit"
-  disabled={loading}
-  className={`
-    w-full py-3 rounded-2xl font-bold text-white
-    bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700
-    transition-all duration-300
-    flex items-center justify-center gap-2
-    ${loading ? "opacity-70 cursor-not-allowed" : "hover:scale-[1.02]"}
-  `}
->
-  {loading ? (
-    <>
-      <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-      Adding Pet...
-    </>
-  ) : (
-    "Add Pet"
-  )}
-</Button>
+            type="submit"
+            disabled={loading}
+            className={`
+              w-full py-3 rounded-2xl font-bold text-white
+              bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-700
+              transition-all duration-300
+              flex items-center justify-center gap-2
+              ${loading ? "opacity-70 cursor-not-allowed" : "hover:scale-[1.02]"}
+            `}
+          >
+            {loading ? (
+              <>
+                <LoadingSpinner />
+                Adding Pet...
+              </>
+            ) : (
+              "Add Pet"
+            )}
+          </Button>
 
         </form>
       </div>
     </div>
   );
 }
-

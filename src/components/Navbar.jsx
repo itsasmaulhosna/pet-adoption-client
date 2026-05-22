@@ -56,17 +56,17 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           {/* LOGO */}
-          <Link href="/" className="flex items-center ">
+          <Link href="/" className="flex items-center">
 
             <Image
               src="/images/logo.png"
               alt="logo"
               width={80}
               height={80}
-              className="object-cover"
+              className="object-cover w-[60px] sm:w-[80px]"
             />
 
-            <h1 className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-pink-500 to-red-400 bg-clip-text text-transparent tracking-wide">
+            <h1 className="text-xl sm:text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-pink-500 to-red-400 bg-clip-text text-transparent tracking-wide">
               PetNest
             </h1>
 
@@ -108,7 +108,7 @@ export default function Navbar() {
               <Link
                 href="/dashboard/add-pet"
                 className={`flex items-center gap-2 transition-all duration-300 ${
-                  pathname === "/dashboard/add-pets"
+                  pathname === "/dashboard/add-pet"
                     ? "text-pink-500"
                     : "hover:text-pink-500"
                 }`}
@@ -123,7 +123,7 @@ export default function Navbar() {
               <Link
                 href="/dashboard/my-requests"
                 className={`flex items-center gap-2 transition-all duration-300 ${
-                  pathname === "/dashboard/my-request"
+                  pathname === "/dashboard/my-requests"
                     ? "text-pink-500"
                     : "hover:text-pink-500"
                 }`}
@@ -136,13 +136,13 @@ export default function Navbar() {
           </ul>
 
           {/* RIGHT SIDE */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
 
             {/* THEME TOGGLE */}
             <button
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              className=
-                {`w-10 h-10 rounded-full
+              className={`
+                w-10 h-10 rounded-full
                 flex items-center justify-center
                 bg-gray-200 dark:bg-white/10
                 hover:scale-110
@@ -156,7 +156,7 @@ export default function Navbar() {
             {!user && (
               <Link
                 href="/login"
-                className={`hidden sm:flex items-center gap-2 transition-all duration-300 ${
+                className={`hidden md:flex items-center gap-2 transition-all duration-300 ${
                   pathname === "/login"
                     ? "text-pink-500"
                     : "hover:text-pink-500"
@@ -174,8 +174,8 @@ export default function Navbar() {
               {user ? (
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className=
-                    {`flex items-center gap-2
+                  className={`
+                    flex items-center gap-2
                     px-2 py-1 rounded-full
                     hover:bg-gray-100 dark:hover:bg-white/10
                     transition-all duration-300
@@ -190,8 +190,8 @@ export default function Navbar() {
                     alt="user"
                     width={42}
                     height={42}
-                    className=
-                     {` w-[42px] h-[42px]
+                    className={`
+                      w-[42px] h-[42px]
                       rounded-full
                       object-cover
                       border-2 border-pink-500
@@ -199,7 +199,7 @@ export default function Navbar() {
                   />
 
                   <FaChevronDown
-                    className={`transition duration-300 ${
+                    className={`hidden sm:block transition duration-300 ${
                       dropdownOpen ? "rotate-180" : ""
                     }`}
                   />
@@ -208,8 +208,8 @@ export default function Navbar() {
               ) : (
                 <Link
                   href="/login"
-                  className=
-                    {`hidden md:flex
+                  className={`
+                    hidden md:flex
                     px-5 py-2 rounded-full
                     text-white font-semibold
                     bg-gradient-to-r from-blue-400 via-pink-500 to-red-400
@@ -223,8 +223,8 @@ export default function Navbar() {
               {/* DROPDOWN MENU */}
               {dropdownOpen && user && (
                 <div
-                  className=
-                    {`absolute right-0 top-14
+                  className={`
+                    absolute right-0 top-14
                     w-64
                     bg-white dark:bg-[#0B1F3A]
                     border border-gray-200 dark:border-white/10
@@ -247,19 +247,19 @@ export default function Navbar() {
                         alt="user"
                         width={45}
                         height={45}
-                        className=
-                          {`w-[45px] h-[45px]
+                        className={`
+                          w-[45px] h-[45px]
                           rounded-full
                           object-cover
                         `}
                       />
 
-                      <div>
-                        <h3 className="font-semibold text-gray-800 dark:text-white">
+                      <div className="overflow-hidden">
+                        <h3 className="font-semibold text-gray-800 dark:text-white truncate">
                           {user?.name}
                         </h3>
 
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-500 truncate">
                           {user?.email}
                         </p>
                       </div>
@@ -272,8 +272,8 @@ export default function Navbar() {
                   <Link
                     href="/dashboard"
                     onClick={() => setDropdownOpen(false)}
-                    className=
-                      {`flex items-center gap-3 px-5 py-4
+                    className={`
+                      flex items-center gap-3 px-5 py-4
                       hover:bg-gray-100 dark:hover:bg-white/10
                       transition-all duration-300
                     `}
@@ -282,7 +282,6 @@ export default function Navbar() {
                     Dashboard
                   </Link>
 
-                  
                   {/* LOGOUT */}
                   <button
                     onClick={async () => {
@@ -294,8 +293,8 @@ export default function Navbar() {
                         },
                       });
                     }}
-                    className=
-                      {`w-full flex items-center gap-3 px-5 py-4
+                    className={`
+                      w-full flex items-center gap-3 px-5 py-4
                       text-red-500
                       hover:bg-gray-100 dark:hover:bg-white/10
                       transition-all duration-300
@@ -358,10 +357,10 @@ export default function Navbar() {
 
             {/* ADD PETS */}
             <Link
-              href="/dashboard/add-pets"
+              href="/dashboard/add-pet"
               onClick={() => setMenuOpen(false)}
               className={`flex items-center gap-3 transition-all duration-300 ${
-                pathname === "/dashboard/add-pets"
+                pathname === "/dashboard/add-pet"
                   ? "text-pink-500"
                   : "hover:text-pink-500"
               }`}
@@ -372,10 +371,10 @@ export default function Navbar() {
 
             {/* MY REQUESTS */}
             <Link
-              href="/dashboard/my-request"
+              href="/dashboard/my-requests"
               onClick={() => setMenuOpen(false)}
               className={`flex items-center gap-3 transition-all duration-300 ${
-                pathname === "/dashboard/my-request"
+                pathname === "/dashboard/my-requests"
                   ? "text-pink-500"
                   : "hover:text-pink-500"
               }`}
@@ -384,25 +383,48 @@ export default function Navbar() {
               My Requests
             </Link>
 
+            {/* MOBILE LOGIN + GET STARTED */}
             {!user && (
-              <Link
-                href="/login"
-                onClick={() => setMenuOpen(false)}
-                className={`flex items-center gap-3 transition-all duration-300 ${
-                  pathname === "/login"
-                    ? "text-pink-500"
-                    : "hover:text-pink-500"
-                }`}
-              >
-                <FaUserCircle />
-                Login
-              </Link>
+              <div className="flex flex-col gap-3">
+
+                {/* LOGIN */}
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex items-center gap-3 transition-all duration-300 ${
+                    pathname === "/login"
+                      ? "text-pink-500"
+                      : "hover:text-pink-500"
+                  }`}
+                >
+                  <FaUserCircle />
+                  Login
+                </Link>
+
+                {/* GET STARTED BUTTON */}
+                <Link
+                  href="/login"
+                  onClick={() => setMenuOpen(false)}
+                  className={`
+                    w-full flex items-center justify-center
+                    px-5 py-3 rounded-xl
+                    text-white font-semibold
+                    bg-gradient-to-r from-blue-400 via-pink-500 to-red-400
+                    shadow-lg hover:scale-[1.02]
+                    transition-all duration-300
+                  `}
+                >
+                  <LuLogIn className="mr-2" />
+                  Get Started
+                </Link>
+
+              </div>
             )}
 
             {/* MOBILE USER */}
             {user && (
               <>
-                <div className="flex items-center gap-3 pt-2">
+                <div className="flex items-center gap-3 pt-2 border-t border-gray-200 dark:border-white/10">
 
                   <Image
                     src={
@@ -412,20 +434,20 @@ export default function Navbar() {
                     alt="user"
                     width={45}
                     height={45}
-                    className=
-                      {`w-[45px] h-[45px]
+                    className={`
+                      w-[45px] h-[45px]
                       rounded-full
                       object-cover
                       border-2 border-pink-500
                     `}
                   />
 
-                  <div>
-                    <h3 className="font-semibold">
+                  <div className="overflow-hidden">
+                    <h3 className="font-semibold truncate">
                       {user?.name}
                     </h3>
 
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 truncate">
                       {user?.email}
                     </p>
                   </div>
@@ -436,8 +458,8 @@ export default function Navbar() {
                 <Link
                   href="/dashboard"
                   onClick={() => setMenuOpen(false)}
-                  className=
-                    {`flex items-center gap-3
+                  className={`
+                    flex items-center gap-3
                     hover:text-pink-500
                     transition-all duration-300
                   `}
@@ -457,8 +479,8 @@ export default function Navbar() {
                       },
                     });
                   }}
-                  className=
-                    {`flex items-center gap-3
+                  className={`
+                    flex items-center gap-3
                     text-red-500
                   `}
                 >
@@ -476,4 +498,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
